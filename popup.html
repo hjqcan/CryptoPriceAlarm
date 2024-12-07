@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>加密货币价格提醒</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, input {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    select {
+      width: 100%;
+      cursor: pointer;
+    }
+    select:focus {
+      border-color: #2196F3;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+    button {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .alert-list {
+      margin-top: 15px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+    }
+    .alert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      background-color: white;
+    }
+    .current-price {
+      margin: 10px 0;
+      padding: 12px;
+      background-color: #f8f9fa;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .price-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #2196F3;
+      margin-top: 5px;
+      transition: color 0.3s ease;
+    }
+    .loading {
+      color: #666;
+      font-style: italic;
+    }
+    .price-up {
+      color: #4CAF50;
+      animation: fadeColor 2s;
+    }
+    .price-down {
+      color: #f44336;
+      animation: fadeColor 2s;
+    }
+    .price-value span {
+      font-size: 0.8em;
+      margin-left: 8px;
+      font-weight: normal;
+    }
+    @keyframes fadeColor {
+      from {
+        font-size: 1.5em;
+      }
+      to {
+        font-size: 1.4em;
+      }
+    }
+    .delete-btn {
+      background-color: #f44336;
+      padding: 4px 8px;
+      font-size: 0.9em;
+    }
+    .delete-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>加密货币价格提醒</h2>
+    <div class="form-group">
+      <label for="crypto">选择加密货币:</label>
+      <select id="crypto">
+        <option value="bitcoin">比特币 (BTC)</option>
+        <option value="ethereum">以太坊 (ETH)</option>
+        <option value="binancecoin">币安币 (BNB)</option>
+        <option value="ripple">瑞波币 (XRP)</option>
+        <option value="cardano">卡尔达诺 (ADA)</option>
+        <option value="solana">索拉纳 (SOL)</option>
+        <option value="polkadot">波卡币 (DOT)</option>
+        <option value="dogecoin">狗狗币 (DOGE)</option>
+        <option value="avalanche-2">雪崩 (AVAX)</option>
+        <option value="chainlink">链接 (LINK)</option>
+        <option value="uniswap">优尼币 (UNI)</option>
+        <option value="litecoin">莱特币 (LTC)</option>
+        <option value="matic-network">Polygon (MATIC)</option>
+        <option value="tron">波场币 (TRX)</option>
+      </select>
+    </div>
+
+    <div class="current-price" id="currentPrice">
+      <div class="loading">选择加密货币查看当前价格...</div>
+    </div>
+
+    <div class="form-group">
+      <label for="targetPrice">目标价格 (USD):</label>
+      <input type="number" id="targetPrice" step="0.01">
+    </div>
+    <div class="form-group">
+      <label for="condition">条件:</label>
+      <select id="condition">
+        <option value="above">高于</option>
+        <option value="below">低于</option>
+      </select>
+    </div>
+    <button id="addAlert">添加提醒</button>
+    
+    <div class="alert-list">
+      <h3>当前提醒</h3>
+      <div id="alertsList"></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
